@@ -1,0 +1,28 @@
+:root {
+  /* Substitua pelo seu código hexadecimal de laranja */
+  --vp-c-brand-1: #ff7a00; /* Laranja principal */
+  --vp-c-brand-2: #be6716; /* Hover/Escuro */
+  --vp-c-brand-3: #ff8533; /* Claro */
+  --vp-c-text-1: #212529;
+  
+  /* Se quiser mudar o degradê do título da Home */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #ff7a00 0%, #000000 100%);
+}
+
+.name {
+  background: none !important; /* Mata o gradient */
+  -webkit-text-fill-color: initial !important; /* Reseta o preenchimento */
+  color: var(--vp-c-brand-1) !important; /* Seu laranja */
+}
+
+/* 2. Estiliza especificamente o "Blocks" para ser preto */
+.title-blocks {
+  color: #212529 !important;
+}
+
+/* Ajuste para o Modo Escuro (Dark Mode) */
+/* Se você quiser que o "Blocks" fique branco no modo escuro para não sumir */
+.dark .title-blocks {
+  color: #ffffff !important;
+}
