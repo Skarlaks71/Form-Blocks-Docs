@@ -111,8 +111,6 @@ Prop: inline
 Para listas dinâmicas (como telefones ou endereços), adicione isRepeater: true ao seu objeto de grupo no groupBase. O Form Blocks cuidará da lógica de adicionar e remover itens automaticamente.
 
 # Próximos Passos
- - Explorar a DSL Avançada
+ - Explorando a **DSL** _**(Designed Shorthand Language)**_
 
  - Personalização de Estilos
-
- - Validação de Campos
