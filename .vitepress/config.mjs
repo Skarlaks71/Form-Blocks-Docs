@@ -29,8 +29,44 @@ export default defineConfig({
       {
         text: 'Componentes',
         items: [
-          { text: 'FormBlocks', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          {
+            text: 'Blocks',
+            collapsed: true,
+            items: [
+              { text: 'FormBlocks', link: '/components/blocks/form-blocks.md' },
+              { text: 'FormGroupBlocks', link: '/components/blocks/form-group-blocks.md' },
+              { text: 'FormInputsBlocks', link: '/components/blocks/form-inputs-blocks.md' },
+              { text: 'FormBlocksRepeater', link: '/components/blocks/form-blocks-repeater.md' },
+              { text: 'FormInputsRepeaterItem' },
+            ]
+          },
+          {
+            text: 'Layout',
+            collapsed: true,
+            items: [
+              { text: 'Container' },
+              { text: 'Row' },
+              { text: 'Col' },
+            ]
+          },
+          {
+            text: 'Form',
+            collapsed: true,
+            items: [
+              { text: 'Input' },
+              { text: 'Checkbox' },
+              { text: 'Radio' },
+              { text: 'Select' },
+              { text: 'Textarea' },
+            ]
+          },
+          {
+            text: 'Miscellaneous',
+            collapsed: true,
+            items: [
+              { text: 'Button' },
+            ]
+          },
         ]
       }
     ],

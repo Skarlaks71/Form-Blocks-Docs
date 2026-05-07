@@ -9,9 +9,9 @@ A estrutura básica de uma string DSL segue este padrão:
 
 Label: O texto que aparecerá para o usuário.
 
-- **::**: O separador obrigatório entre o nome do campo e as configurações.
+- **::** - O separador obrigatório entre o nome do campo e as configurações.
 
-- **:** : O separador de segmentos (cada segmento define uma característica).
+- **:**  - O separador de segmentos (cada segmento define uma característica).
 
 ## 🛠 Segmentos Disponíveis
 A DSL processa cada segmento automaticamente através de Matchers. Veja o que você pode controlar:
