@@ -17,6 +17,7 @@ export default defineConfig({
         items: [
           { text: 'Primeiros Passos', link: '/guide/getting-started.md' },
           { text: 'Explorando a DSL', link: '/guide/exploring-dsl.md' },
+          { text: 'Registry: Registrando Inputs', link: '/guide/registry.md' },
         ]
       },
       {
@@ -37,20 +38,20 @@ export default defineConfig({
               { text: 'FormGroupBlocks', link: '/components/blocks/form-group-blocks.md' },
               { text: 'FormInputsBlocks', link: '/components/blocks/form-inputs-blocks.md' },
               { text: 'FormBlocksRepeater', link: '/components/blocks/form-blocks-repeater.md' },
-              { text: 'FormInputsRepeaterItem' },
+              { text: 'FormInputsRepeaterItem', link: '/components/blocks/form-blocks-repeater-item.md' },
             ]
           },
           {
             text: 'Layout',
             collapsed: true,
             items: [
-              { text: 'Container' },
-              { text: 'Row' },
-              { text: 'Col' },
+              { text: 'Container', link: '/components/layout/fb-container.md' },
+              { text: 'Row', link: '/components/layout/fb-row.md' },
+              { text: 'Col', link: '/components/layout/fb-col.md' },
             ]
           },
           {
-            text: 'Form',
+            text: 'Inputs',
             collapsed: true,
             items: [
               { text: 'Input' },
