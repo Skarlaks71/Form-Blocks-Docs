@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/Form-Blocks-Docs/',
   title: "Form Blocks",
   description: "A forma mais simples de escrever formulários complexos para seus projetos!",
   themeConfig: {
