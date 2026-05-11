@@ -5,7 +5,7 @@ layout: home
 hero:
   name: "Form <span class='title-blocks'>Blocks</span>"
   text: "A forma mais simples de escrever formulários complexos para seus projetos!"
-  tagline: My great project tagline
+  tagline: Um Framework criado para facilitar o desenvolvimento de formulários complexos.
   actions:
     - theme: brand
       text: Quick Start 🚀
