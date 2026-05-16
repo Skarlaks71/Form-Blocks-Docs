@@ -55,18 +55,18 @@ export default defineConfig({
             text: 'Inputs',
             collapsed: true,
             items: [
-              { text: 'Input' },
-              { text: 'Checkbox' },
-              { text: 'Radio' },
-              { text: 'Select' },
-              { text: 'Textarea' },
+              { text: 'Input', link: '/components/inputs/fb-input.md' },
+              { text: 'Input Block', link: '/components/inputs/fb-input-block.md' },
+              { text: 'Textarea', link: '/components/inputs/fb-textarea.md' },
+              { text: 'Checkbox', link: '/components/inputs/fb-checkbox.md' },
+              { text: 'Radio', link: '/components/inputs/fb-radio.md' },
             ]
           },
           {
             text: 'Miscellaneous',
             collapsed: true,
             items: [
-              { text: 'Button' },
+              { text: 'Button', link: '/components/miscellaneous/fb-button.md' },
             ]
           },
         ]
