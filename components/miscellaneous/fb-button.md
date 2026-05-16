@@ -1,5 +1,14 @@
+<script setup>
+import { FbButton, FbCol, FbRow } from '@form-blocks/vue'
+</script>
+
 # O Componente: FbButton
 O `<fb-button>` é o componente de ação padrão do ecossistema Form Blocks. Ele abstrai o elemento HTML `<button>` nativo e encapsula o gerenciamento de estados críticos de carregamento (_loading_), bloqueios de segurança contra duplo clique, variações anatômicas (*pílula, círculo, bloco plano*) e tratamentos estéticos de textura.
+
+<div style="padding: 20px; border: 1px solid #e2e8f0; border-radius: 8px;">
+    <fb-button label="Clique Aqui 🚀" />
+</div>
+
 
 ## Funcionalidades
 - **Proteção contra Duplo Envio:** Bloqueia automaticamente o evento de clique e desabilita o elemento no DOM caso a propriedade `loading` ou `disabled` esteja ativa.
@@ -14,9 +23,21 @@ O `<fb-button>` é o componente de ação padrão do ecossistema Form Blocks. El
 ### Botão de Envio Padrão (Submit)
 Para formulários, basta passar o tipo submit. Ele herdará a estilização primary automaticamente:
 
+<div style="padding: 20px; border: 1px solid var(--vp-c-divider); border-radius: 8px; margin-bottom: 16px;">
+
+<fb-button type="submit" variant="complementary" label="Salvar Alterações" />
+    
+<hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--vp-c-divider);" />
+
+<details style="cursor: pointer;">
+        <summary style="font-size: 0.9em; color: var(--vp-c-text-2); font-weight: bold;">Ver Código Fonte</summary>
+
 ```vue
-<fb-button type="submit" label="Salvar Alterações" />
+<fb-button type="submit" variant="complementary" label="Salvar Alterações" />
 ```
+
+</details>
+</div>
 
 ### Tratando Eventos de Clique com Segurança
 Você pode escutar o evento `@click` normalmente. Se o botão for desabilitado dinamicamente, a sua função de callback não será disparada:
@@ -54,6 +75,26 @@ Se você precisar colocar um ícone ao lado do texto, ignore a propriedade `labe
 ### Variantes Anatômicas (pill, circle, flat)
 Perfeito para construir interfaces dinâmicas, barras de ferramentas ou botões de fechar modais:
 
+<div style="padding: 20px; border: 1px solid var(--vp-c-divider); border-radius: 8px; margin-bottom: 16px;">
+<fb-row>
+    <fb-col cols="4">
+        <fb-button label="Assinar Agora" pill variant="warning" />
+    </fb-col>
+    <fb-col cols="2">
+        <fb-button circle variant="danger">
+            X
+        </fb-button>
+    </fb-col>
+    <fb-col cols="4">
+        <fb-button label="Cancelar" flat />
+    </fb-col>
+</fb-row>
+    
+<hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--vp-c-divider);" />
+
+<details style="cursor: pointer;">
+    <summary style="font-size: 0.9em; color: var(--vp-c-text-2); font-weight: bold;">Ver Código Fonte</summary>
+
 ```html
 <fb-button label="Assinar Agora" pill variant="warning" />
 
@@ -63,6 +104,9 @@ Perfeito para construir interfaces dinâmicas, barras de ferramentas ou botões 
 
 <fb-button label="Cancelar" flat />
 ```
+
+</details>
+</div>
 
 ## Classes e Estrutura BEM
 A árvore de renderização do componente gera as seguintes classes baseadas no prefixo global:
@@ -84,10 +128,46 @@ Um dos maiores diferenciais estéticos do FbButton é o seu motor de texturas ba
 
 Como a textura atua como uma máscara de opacidade, ela herda e reage automaticamente à cor de fundo definida na propriedade variant.
 
-```vue
-<fb-button variant="danger" texture="stripes" label="Deletar Conta" />
-<fb-button variant="success" texture="stripes" label="Aprovar Pagamento" />
+<div style="padding: 20px; border: 1px solid var(--vp-c-divider); border-radius: 8px; margin-bottom: 16px;">
+<fb-row>
+    <fb-col cols="3">
+        <fb-button variant="danger" texture="stripes" label="Stripes" />
+    </fb-col>
+    <fb-col cols="3">
+        <fb-button variant="success" texture="waves" label="Waves" />
+    </fb-col>
+    <fb-col cols="3">
+        <fb-button variant="primary" label="Carbon" />
+    </fb-col>
+    <fb-col cols="3">
+        <fb-button variant="complementary" texture="grid" label="grid" />
+    </fb-col>
+</fb-row>
+    
+<hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--vp-c-divider);" />
+
+<details style="cursor: pointer;">
+    <summary style="font-size: 0.9em; color: var(--vp-c-text-2); font-weight: bold;">Ver Código Fonte</summary>
+
+```html
+<fb-row>
+    <fb-col cols="3">
+        <fb-button variant="danger" texture="stripes" label="Stripes" />
+    </fb-col>
+    <fb-col cols="3">
+        <fb-button variant="success" texture="waves" label="Waves" />
+    </fb-col>
+    <fb-col cols="3">
+        <fb-button variant="primary" label="Carbon" />
+    </fb-col>
+    <fb-col cols="3">
+        <fb-button variant="complementary" texture="grid" label="grid" />
+    </fb-col>
+</fb-row>
 ```
+
+</details>
+</div>
 
 ### Variações Disponíveis
 O framework disponibiliza 4 padrões geométricos construídos via SCSS Mixins. Você pode alternar entre eles passando o nome correspondente na prop texture:
@@ -100,9 +180,21 @@ O framework disponibiliza 4 padrões geométricos construídos via SCSS Mixins. 
 
 ### Removendo Texturas (clean)
 Se você preferir um visual minimalista Flat, sem nenhum tipo de relevo ou textura nas ações, basta ativar a flag clean. Ela limpa os mixins de máscara e deixa a cor da variante totalmente lisa:
+
+<div style="padding: 20px; border: 1px solid var(--vp-c-divider); border-radius: 8px; margin-bottom: 16px;">
+<fb-button variant="complementary" clean label="Botão sem textura" />
+    
+<hr style="margin: 20px 0; border: 0; border-top: 1px solid var(--vp-c-divider);" />
+
+<details style="cursor: pointer;">
+    <summary style="font-size: 0.9em; color: var(--vp-c-text-2); font-weight: bold;">Ver Código Fonte</summary>
+
 ```vue
-<fb-button variant="primary" clean label="Botão Liso" />
+<fb-button variant="complementary" clean label="Botão sem textura" />
 ```
+
+</details>
+</div>
 
 ::: tip
 **💡 Nota de Performance:** Por utilizarem strings de SVG otimizadas direto no código, essas texturas geram zero requisições HTTP adicionais para o servidor, garantindo que o carregamento visual do formulário aconteça a 60fps de forma instantânea.
