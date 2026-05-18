@@ -7,6 +7,9 @@ export default defineConfig({
   description: "A forma mais simples de escrever formulários complexos para seus projetos!",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+
+    siteTitle: false,
+
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' }
@@ -70,6 +73,14 @@ export default defineConfig({
             ]
           },
         ]
+      },
+      {
+        text: 'Composables',
+        items: [],
+      },
+      {
+        text: 'Em produção',
+        items: [],
       }
     ],
 

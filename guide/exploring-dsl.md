@@ -1,8 +1,8 @@
-# 🧠 Explorando a DSL (Designed Shorthand Language)
+# Explorando a DSL (Designed Shorthand Language)
 
 A Designed Shorthand Language (DSL) do Form Blocks foi criada para desenvolvedores que valorizam velocidade e legibilidade. Com ela, você define o comportamento, estilo e propriedades de um campo de formulário usando apenas uma string formatada.
 
-## 🔍 Anatomia da Sintaxe
+## Anatomia da Sintaxe
 A estrutura básica de uma string DSL segue este padrão:
 
 `'Label::configuracao:segmento:segmento'`
@@ -13,7 +13,7 @@ Label: O texto que aparecerá para o usuário.
 
 - **:**  - O separador de segmentos (cada segmento define uma característica).
 
-## 🛠 Segmentos Disponíveis
+## Segmentos Disponíveis
 A DSL processa cada segmento automaticamente através de Matchers. Veja o que você pode controlar:
 
 ### 1. Tipos de Input e Componentes
@@ -46,7 +46,7 @@ Qualquer segmento que não for reconhecido como tipo ou coluna será tratado com
 
 Exemplo: `'Bio::textarea:disabled:required'`
 
-## 💎 Tipagem Primitiva (castPrimitive)
+## Tipagem Primitiva (castPrimitive)
 Ao usar a sintaxe chave=valor, todos os valores são tratados como strings por padrão. Para passar outros tipos primitivos, use o sufixo de tipo com um pipe |:
 
 | Sufixo | Tipo | Exemplo | Resultado JS |
@@ -59,7 +59,7 @@ Ao usar a sintaxe chave=valor, todos os valores são tratados como strings por p
 |   u    | undefined | data-type=\|u | (undefined) |
 |   N    | Null | form-data=\|N | form-data="" (null)|
 
-## 📦 Trabalhando com Opções (Select, Radio, Checkbox)
+## Trabalhando com Opções (Select, Radio, Checkbox)
 Para campos que exigem uma lista de opções (como um select), passamos a string DSL como o primeiro elemento de um array, e as opções como o segundo:
 
 ```javascript
@@ -67,7 +67,7 @@ Para campos que exigem uma lista de opções (como um select), passamos a string
 [ 'Cidade::select:md6', [ { label: 'São Paulo', value: 'sp' }, { label: 'Rio', value: 'rj' } ] ]
 ```
 
-## 🚀 Exemplos Práticos
+## Exemplos Práticos
 #### Formulário de Registro Rápido
 
 ```javascript
@@ -103,7 +103,7 @@ A string 'Senha::password:md6:disabled' é convertida pelo core em:
 }
 ```
 
-## ⚠️ Regras Importantes
+## Regras Importantes
 
 1. **Ordem dos Segmentos:** A ordem dos segmentos após o :: não importa (ex: md6:password é o mesmo que password:md6).
 
