@@ -7,6 +7,7 @@ import {
   groupBaseIProps,
   groupBaseFlags,
   groupBaseSelect,
+  groupBaseRegister,
 } from '../.vitepress/theme/composables/useStartExamples.js'
 
 // 1. Chaves que serão enviadas para a API
@@ -16,6 +17,15 @@ const backVars = [
   'valor3',
   'valor4',
   'valor5',
+]
+
+const backVars2 = [
+  'valor21',
+  'valor22',
+  'valor23',
+  'valor24',
+  'valor25',
+  'valor26',
 ]
 
 // 2. Estado do formulário e erros
@@ -29,6 +39,7 @@ const groupsGrid = makeGroups(backVars, groupBaseGrid, [[1, 2]])
 const groupsIProps = makeGroups(backVars, groupBaseIProps, [[2, 3]])
 const groupsFlags = makeGroups(backVars, groupBaseFlags, [[3, 4]])
 const groupsSelect = makeGroups(backVars, groupBaseSelect, [[4, 5]])
+const groupsRegister = makeGroups(backVars2, groupBaseRegister, [6])
 </script>
 
 # Explorando a DSL (Designed Shorthand Language)
@@ -185,7 +196,11 @@ const groupBase = [
 ## Exemplos Práticos
 #### Formulário de Registro Rápido
 
-```javascript
+<sample-box class="mt-1">
+  <form-blocks v-model="formData" :groups="groupsRegister" />
+  <template #details-content>
+
+```js
 const groupBase = [
   {
     title: 'Cadastro',
@@ -200,6 +215,8 @@ const groupBase = [
   }
 ]
 ```
+  </template>
+</sample-box>
 
 ### O que acontece "por baixo do capô"?
 A string `'Senha::password:md6:disabled'` é convertida pelo core em:

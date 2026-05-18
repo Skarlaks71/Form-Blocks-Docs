@@ -42,3 +42,17 @@ export const groupBaseSelect = [
     ]
   }
 ]
+
+export const groupBaseRegister = [
+  {
+    title: 'Cadastro',
+    forms: [
+      'Nome Completo::text:md8:placeholder=Digite seu nome',
+      'Idade::number:md4:min=18',
+      'E-mail::email:12',
+      'Senha::password:md6',
+      'Confirmar Senha::password:md6',
+      'Aceito os termos::checkbox:name=terms:required'
+    ]
+  }
+]
