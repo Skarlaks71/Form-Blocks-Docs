@@ -1,3 +1,36 @@
+<script setup>
+import { ref } from 'vue'
+import { useFormHandle } from '@form-blocks/core'
+import {
+  groupBasePassword,
+  groupBaseGrid,
+  groupBaseIProps,
+  groupBaseFlags,
+  groupBaseSelect,
+} from '../.vitepress/theme/composables/useStartExamples.js'
+
+// 1. Chaves que serão enviadas para a API
+const backVars = [
+  'valor1',
+  'valor2',
+  'valor3',
+  'valor4',
+  'valor5',
+]
+
+// 2. Estado do formulário e erros
+const formData = ref({})
+const errors = ref({})
+
+// 3. Construção dos blocos
+const { makeGroups } = useFormHandle()
+const groupsPassword = makeGroups(backVars, groupBasePassword, [1])
+const groupsGrid = makeGroups(backVars, groupBaseGrid, [[1, 2]])
+const groupsIProps = makeGroups(backVars, groupBaseIProps, [[2, 3]])
+const groupsFlags = makeGroups(backVars, groupBaseFlags, [[3, 4]])
+const groupsSelect = makeGroups(backVars, groupBaseSelect, [[4, 5]])
+</script>
+
 # Explorando a DSL (Designed Shorthand Language)
 
 A Designed Shorthand Language (DSL) do Form Blocks foi criada para desenvolvedores que valorizam velocidade e legibilidade. Com ela, você define o comportamento, estilo e propriedades de um campo de formulário usando apenas uma string formatada.
@@ -9,9 +42,9 @@ A estrutura básica de uma string DSL segue este padrão:
 
 Label: O texto que aparecerá para o usuário.
 
-- **::** - O separador obrigatório entre o nome do campo e as configurações.
+  `::` - O separador obrigatório entre o nome do campo e as configurações.
 
-- **:**  - O separador de segmentos (cada segmento define uma característica).
+  `:`  - O separador de segmentos (cada segmento define uma característica).
 
 ## Segmentos Disponíveis
 A DSL processa cada segmento automaticamente através de Matchers. Veja o que você pode controlar:
@@ -23,9 +56,25 @@ Tipos Nativos: text, password, email, number, url.
 
 Componentes Especiais: select, checkbox, radio.
 
-Datas: date, datetime-local, time (convertidos automaticamente para o componente flatpickr).
+Datas: date, datetime-local, time (convertidos automaticamente para o componente `flatpickr`).
 
-Exemplo: `'Senha::password' ou 'Nascimento::date'`
+**Exemplo:** `'Senha::password' ou 'Nascimento::date'`
+<sample-box>
+  <form-blocks v-model="formData" :groups="groupsPassword" />
+  <template #details-content>
+
+```js
+const groupBase = [
+  {
+    noTitle: true,
+    forms: [
+      'Senha::password' // [!code highlight]
+    ]
+  }
+]
+```
+  </template>
+</sample-box>
 
 ### 2. Grid e Responsividade
 Controle o layout sem escrever CSS.
@@ -34,17 +83,69 @@ Colunas Base (12 colunas): Basta passar um número (ex: 6 para ocupar metade da 
 
 Breakpoints: Use o prefixo do breakpoint (sm, md, lg, xl) seguido do número.
 
-Exemplo: `'Nome::12:md6' (100% no mobile, 50% em telas médias)`.
+**Exemplo**: `'Nome::12:md6' (100% no mobile, 50% em telas médias)`.
+<sample-box>
+  <form-blocks v-model="formData" :groups="groupsGrid" />
+  <template #details-content>
+
+```js
+const groupBase = [
+  {
+    noTitle: true,
+    forms: [
+      'Nome::12:md6' // [!code highlight]
+    ]
+  }
+]
+```
+  </template>
+</sample-box>
 
 ### 3. Propriedades Chave=Valor (iProps)
 Para passar atributos específicos ao componente (como placeholder, name, min, max), use a sintaxe de atribuição.
 
-Exemplo: `'Idade::number:min=18:max=99'`
+**Exemplo**: `'Idade::number:min=18:max=99'`
+<sample-box>
+  <form-blocks v-model="formData" :groups="groupsIProps" />
+  <template #details-content>
+
+```js
+const groupBase = [
+  {
+    noTitle: true,
+    forms: [
+      'Idade::number:min=18:max=99' // [!code highlight]
+    ]
+  }
+]
+```
+  </template>
+</sample-box>
 
 ### 4. Propriedades Booleanas (Flags)
 Qualquer segmento que não for reconhecido como tipo ou coluna será tratado como uma propriedade booleana true.
 
-Exemplo: `'Bio::textarea:disabled:required'`
+**Exemplo**: `'Bio::disabled:required'`
+<sample-box>
+  <form-blocks v-model="formData" :groups="groupsFlags" />
+  <template #details-content>
+
+```js
+const groupBase = [
+  {
+    noTitle: true,
+    forms: [
+      'Bio::disabled:required' // [!code highlight]
+    ]
+  }
+]
+```
+  </template>
+</sample-box>
+
+::: danger Importante
+Até a versão **1.0.0-alpha.6** o input de Textarea não possui suporte a DSL!
+:::
 
 ## Tipagem Primitiva (castPrimitive)
 Ao usar a sintaxe chave=valor, todos os valores são tratados como strings por padrão. Para passar outros tipos primitivos, use o sufixo de tipo com um pipe |:
@@ -62,10 +163,24 @@ Ao usar a sintaxe chave=valor, todos os valores são tratados como strings por p
 ## Trabalhando com Opções (Select, Radio, Checkbox)
 Para campos que exigem uma lista de opções (como um select), passamos a string DSL como o primeiro elemento de um array, e as opções como o segundo:
 
-```javascript
-// Exemplo de Select com opções
-[ 'Cidade::select:md6', [ { label: 'São Paulo', value: 'sp' }, { label: 'Rio', value: 'rj' } ] ]
+
+#### Exemplo de Select com opções
+<sample-box class="mt-1">
+  <form-blocks v-model="formData" :groups="groupsSelect" />
+  <template #details-content>
+
+```js
+const groupBase = [
+  {
+    noTitle: true,
+    forms: [
+      [ 'Cidade::select:md6', [ { label: 'Ceará', value: 'CE' }, { label: 'Paraíba', value: 'PB' } ] ] // [!code highlight]
+    ]
+  }
+]
 ```
+  </template>
+</sample-box>
 
 ## Exemplos Práticos
 #### Formulário de Registro Rápido
@@ -87,7 +202,7 @@ const groupBase = [
 ```
 
 ### O que acontece "por baixo do capô"?
-A string 'Senha::password:md6:disabled' é convertida pelo core em:
+A string `'Senha::password:md6:disabled'` é convertida pelo core em:
 
 ```javascript
 {
@@ -105,7 +220,7 @@ A string 'Senha::password:md6:disabled' é convertida pelo core em:
 
 ## Regras Importantes
 
-1. **Ordem dos Segmentos:** A ordem dos segmentos após o :: não importa (ex: md6:password é o mesmo que password:md6).
+1. **Ordem dos Segmentos:** A ordem dos segmentos após o `::` não importa (ex: `label::md6:password` é o mesmo que `label::password:md6`).
 
 2. **Primeiro Elemento:** Em definições de array, o primeiro elemento deve ser a string DSL, caso contrário o erro FB 001 será disparado.
 
