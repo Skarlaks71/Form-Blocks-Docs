@@ -8,7 +8,7 @@ import {
   groupBaseFlags,
   groupBaseSelect,
   groupBaseRegister,
-} from '../.vitepress/theme/composables/useStartExamples.js'
+} from '@theme/composables/useStartExamples.js'
 
 // 1. Chaves que serão enviadas para a API
 const backVars = [
