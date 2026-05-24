@@ -1,10 +1,34 @@
 import { defineConfig } from 'vitepress'
+import { fileURLToPath, URL } from 'node:url'
+import { themeConfig } from './theme/pt-br/themeConfig'
+import { englishThemeConfig } from './theme/en/themeConfig'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   base: '/Form-Blocks-Docs/',
   title: "Form Blocks",
   description: "A forma mais simples de escrever formulários complexos para seus projetos!",
+  vite: {
+    resolve: {
+      alias: {
+        // Mapeia o '@theme' para a pasta oculta '.vitepress/theme'
+        '@theme': fileURLToPath(new URL('./theme', import.meta.url))
+      }
+    }
+  },
+  locales: {
+    root: {
+      label: 'Português',
+      lang: 'pt-br',
+      themeConfig: themeConfig,
+    },
+    en: {
+      label: 'English',
+      lang: 'en',
+      link: '/en',
+      themeConfig: englishThemeConfig,
+    },
+  },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
 
@@ -12,23 +36,16 @@ export default defineConfig({
 
     nav: [
       { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' }
+      { text: 'Me ajude com um Monster', link: '/markdown-examples' }
     ],
 
     sidebar: [
       {
         text: 'Guia Rápido',
         items: [
-          { text: 'Primeiros Passos', link: '/guide/getting-started.md' },
-          { text: 'Explorando a DSL', link: '/guide/exploring-dsl.md' },
-          { text: 'Registry: Registrando Inputs', link: '/guide/registry.md' },
-        ]
-      },
-      {
-        text: 'Examples',
-        items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Primeiros Passos', link: '/guide/first-steps/getting-started.md' },
+          { text: 'Explorando a DSL', link: '/guide/first-steps/exploring-dsl.md' },
+          { text: 'Registry: Registrando Inputs', link: '/guide/first-steps/registry.md' },
         ]
       },
       {

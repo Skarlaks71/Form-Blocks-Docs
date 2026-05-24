@@ -2,7 +2,7 @@
 import { ref } from 'vue'
 import { useFormHandle } from '@form-blocks/core'
 import { FbCol, FbButton } from '@form-blocks/vue'
-import useLoginForm from '../.vitepress/theme/composables/useLoginForm.js'
+import useLoginForm from '@theme/composables/useLoginForm.js'
 
 // 1. Chaves que serão enviadas para a API
 const backVars = ['email', 'password']

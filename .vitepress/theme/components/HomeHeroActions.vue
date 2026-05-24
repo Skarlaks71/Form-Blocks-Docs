@@ -1,13 +1,31 @@
 <script setup>
 import { FbButton } from '@form-blocks/vue'
 import { VPLink } from 'vitepress/theme';
+import { useData } from 'vitepress'
+import { computed } from 'vue';
+
+const { theme, frontmatter, localeIndex } = useData()
+const dataAll = useData()
+console.log(dataAll)
+const quickStartLink = computed(() => {
+  // Pega o caminho configurado no locale atual, ou cai no padrão caso não ache
+  const localePath = localeIndex.value !== 'root' ? `/${localeIndex.value}` : '/'
+  
+  // Limpa barras duplicadas caso o localePath termine em '/' e seu link comece com '/'
+  const cleanBase = localePath.endsWith('/') ? localePath.slice(0, -1) : localePath
+  
+  return `${cleanBase}/guide/first-steps/getting-started`
+})
+
+// const quickStartLabel = computed(() => frontmatter.value.hero?.actions?.quickStart || 'Quick Start')
+// const githubLabel = computed(() => frontmatter.value.hero?.actions?.github || 'Ver no GitHub')
 </script>
 
 <template>
   <div class="custom-actions">
     <fb-row class="custom-actions__row">
       <fb-col cols="2">
-        <VPLink href="/guide/getting-started">
+        <VPLink :href="quickStartLink">
           <fb-button
             texture="grid"
             pill
