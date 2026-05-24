@@ -30,9 +30,9 @@ export const englishThemeConfig = {
           text: 'Layout',
           collapsed: true,
           items: [
-            { text: 'Container', link: '/en/components/layout/fb-container' },
-            { text: 'Row', link: '/en/components/layout/fb-row' },
-            { text: 'Col', link: '/en/components/layout/fb-col' },
+            { text: 'Container', link: '/en/guide/layout/fb-container' },
+            { text: 'Row', link: '/en/guide/layout/fb-row' },
+            { text: 'Col', link: '/en/guide/layout/fb-col' },
           ]
         },
         {
