@@ -11,7 +11,7 @@ O `<fb-input-block>` funciona como o container estrutural e de acessibilidade pa
 - **Renderização Condicional Semântica:** Altera dinamicamente a tag de encapsulamento da label entre _label_ (para inputs textuais) e _span_ (para blocos complexos como agrupamentos de `Radio/Checkbox`) dependendo do contexto.
 
 ## Como usar
-1. **Uso Tradicional (Acoplado ao FbInput)**
+### 1. Uso Tradicional (Acoplado ao FbInput)
    
 O `FbInputBlock` compartilha suas propriedades reativas e metadados diretamente com os filhos que herdam as propriedades do slot padrão (`slotProps`):
 
@@ -30,7 +30,7 @@ O `FbInputBlock` compartilha suas propriedades reativas e metadados diretamente 
 </fb-input-block>
 ```
 
-2. **Tratamento de Erros e Validação Dinâmica**
+### 2. Tratamento de Erros e Validação Dinâmica
    
 Ao assumir o estado inválido, o componente ativa um canal de anúncio agressivo para leitores de tela e expõe o erro imediatamente abaixo do bloco:
 
@@ -46,7 +46,7 @@ Ao assumir o estado inválido, o componente ativa um canal de anúncio agressivo
 </fb-input-block>
 ```
 
-3. **Cenários de Múltiplos Elementos (Ex: Checkbox/Radio)**
+### 3. Cenários de Múltiplos Elementos (Ex: Checkbox/Radio)
    
 Para grupos de seleção, clicar na label principal do bloco não deve focar o primeiro elemento de forma cega. Passar `:label-for="false"` transforma a label de topo em um elemento `<span>` estrutural seguro, enquanto o `FbCheckbox` gerencia seus próprios identificadores internos de forma limpa:
 

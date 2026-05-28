@@ -1,6 +1,53 @@
 # O Componente: FormBlocks
 O componente `<form-blocks>` é o ponto de entrada único para renderizar seus formulários. Ele é responsável por gerenciar a reatividade global, injetar erros de validação e fornecer slots de customização para cada nível da hierarquia.
 
+## Anatomia
+Formulários em geral são criados a partir de seções de inputs:
+```html
+<div>
+  <div class="section 1">
+    <div class="form-group">
+      <label>Input 1</label>
+      <input type="text" />
+    </div>
+    <div class="form-group">
+      <label>Input 1</label>
+      <input type="text" />
+    </div>
+    ... <!-- outros N inputs -->
+  </div>
+  <div class="section 2">
+    <div class="form-group">
+      <label>Input 1</label>
+      <input type="text" />
+    </div>
+    <div class="form-group">
+      <label>Input 1</label>
+      <input type="text" />
+    </div>
+    ... 
+  </div>
+  ... <!-- outras N seções -->
+</div>
+```
+
+no FormBlocks chamos essas seções de **groups** `<form-blocks :groups="myGroups" />`, além dos grupos os formulários também precisam de variaveis para receber os valores dos inputs que foram passados pelos usuários, quem faz a captação e armazenamento dessas variaveis é o objeto formData, por ser o coração de um formulário ele é o nosso v-model `<form-blocks v-model="formData" />`
+
+::: warning Dica
+Recomendo criar o formData como um objeto vazio `const formData = ref({})`, pois isso facilita no desenvolvimento de telas **Change** (**_Novo/Editar_**) ou apenas em telas de **Edição** (**_Editar_**). Porque as propriedades do objeto **formData** só são criadas no momento que o usuário digita naquele campo pela primeira vez.
+:::
+
+Por fim, formulários possuem também um terceiro elemento chave que são os erros `<form-blocks :errors="errors" />`, que também é representado aqui por um objeto de **errors** assim como o **formData**.
+
+Com isso temos o nosso componente criado e pronto:
+```vue
+<form-blocks
+  v-model="formData"
+  :groups="groups"
+  :errors="errors"
+/>
+```
+
 ## Sistema de Slots (Customização Extrema)
 O coração da flexibilidade do Form Blocks reside no seu sistema de slots dinâmicos. Você pode interceptar a renderização em três níveis: **Grupo**, **Input** e **Repetidor**.
 
@@ -42,21 +89,111 @@ Se você quiser mudar completamente como a interface de "Adicionar/Remover" iten
 </form-blocks>
 ```
 
-## Funcionamento Interno
-Para garantir que o framework seja performático e fácil de usar, ele utiliza tecnologias nativas do Vue 3:
+## Groups
+Os Groups no FormBlocks são sem duvidas a parte mais importante do componente, pois sem eles a mágica não acontece, por isso temos essa seção inteira dedicada a explicar como criar groups, onde vivem e o que comem.
 
-### Injeção de Dependência (Provide/Inject)
-O componente raiz fornece o `formData` e o objeto `errors` para todos os componentes filhos (Inputs, Repeaters, Rows). Isso significa que você nunca precisa passar props manualmente de nível em nível.
+### Criando um groupBase
+Grupos são objetos de configuração usados para criar seus formulários da forma mais personalizada possivel, neles você irá ter propriedades pra fazer praticamente tudo que estiver pensando para o layout do seu formulário, até mesmo os mais complexos e exóticos. Para criarmos um group primeiro precisamos da base ou **_groupBase_**, e como todo arquivo de configuração sempre irá ser relativamente grande, recomendo criar um arquivo externo (_**uma composable**_) para isso.
 
-### Renderização Funcional (h())
-Como você viu no código fonte, utilizamos a **Render Function** para garantir que a renderização seja extremamente leve, permitindo que o framework decida dinamicamente se deve renderizar um `FbInput` comum ou um `flatpickr` baseado na sua DSL.
+```javascript
+// useLoginForm.js
+export default const useLoginForm = () => {
+  const groupBase = [
+    {
+      title: 'Meu Formulário',
+      forms: [
+        {
+          label: 'Digite seu e-mail',
+          iProps: {
+            type: 'email',
+            placeholder: 'voce@seuemail.com',
+            required: true,
+          },
+        },
+        {
+          label: 'Digite sua senha',
+          iProps: {
+            type: 'password',
+            placeholder: '******',
+            required: true,
+          },
+        }
+      ]
+    }
+  ]
 
-### Ciclo de Vida no Repetidor
-O componente `FormBlocksRepeater` é inteligente:
+  return {
+    groupBase,
+  }
+}
+```
 
-1. **Auto-init:** Se o array do model estiver vazio, ele adiciona automaticamente o primeiro item no onMounted.
+### Criando as backVars
+O FormBlocks foi idealizado para um sistema monolito _**Laravel + Inertia + Vue**_, por esse motivo as variaveis do backend tem forte influência sobre as variaveis do front, mas isso não é um problema para outros sistemas, principalmente **Rest Api**.
 
-2. **Soft-delete:** Se um item já existe no banco (possui um type ou id), ao remover, ele marca como deleted: true em vez de remover do array, facilitando a sincronização com o backend.
+As **backVars** são sempre o **NOME** das variaveis/propriedades do objeto que vai pro banco ou que vem dele, elas devem ser **um `Array` formado pelos NOMES** dessas propriedades, e são criadas ou como um prop `Array` em caso de **Monolito** ou como um `Array` de modo geral, assim:
+
+```vue
+<script setup>
+// como prop ideal para Monolitos
+const props = definePops({
+  backVars: {
+    type: Array,
+    default: () => [
+      'email',
+      'password',
+      'confirm_password',
+    ]
+  }
+})
+
+// como array tradicional
+// usado para todos os tipos de sistemas
+// principalmente se você possuir mais de um formulário na página
+const backVars = [
+  'email',
+  'password',
+  'confirm_password',
+]
+</script>
+```
+
+como deu pra notar algumas variaveis estão escritas em _**snake_case**_ isso é proposital, pois no laravel geralmente usamos dessa forma, como FormBlocks tem influência direto do laravel nesse aspecto, as backVars por padrão devem ser definidas nesse formato pois **TODAS** as backVars vão ser transformadas automaticamente em **models** quando os **groups** forem criados.
+
+::: danger NOTA
+As backVars são automaticamente transformadas em **Model** via função parse interna. Essa função pode e deve ser substituida caso seu backend não utilize _**snake_case**_!
+:::
+
+### Criando um Group
+Agora que temos nossa base precisamos importar nosso **FormHandle**, assim:
+
+```html
+<script setup>
+import { useFormHandle } from '@form-blocks/core'
+
+// resto do codigo
+</script>
+```
+
+ele é quem irá criar nossos groups através da nossa base, das nossas backVars e de uma função parse caso queiramos (essa função é opcional). Para isso usamos a função `makeGroups` que recebe de 3 - 4 argumentos, **backVars**, **groupBase** e o **groupProps**, além desses 3 existe um quarto argumento chamado options usado para passar a sua função parse se necessário.
+
+```vue
+<script setup>
+import { useFormHandle } from '@form-blocks/core'
+import useLoginForm from './composables/useLoginForm'
+
+const backVars = ['email', 'password']
+
+// 2. Estado do formulário e erros
+const formData = ref({})
+const errors = ref({})
+
+// 3. Construção dos blocos
+const { groupBase } = useLoginForm()
+const { makeGroups } = useFormHandle()
+const groups = makeGroups(backVars, groupBase, [2]) // [!code highlight]
+</script>
+```
 
 ## Exposição de Métodos (expose)
 Se você precisar acessar o estado interno via `ref` no componente pai:
@@ -67,6 +204,7 @@ const formRef = ref(null)
 // Acessando os dados atuais
 console.log(formRef.value.formData)
 ```
+
 ```vue
 <form-blocks ref="formRef" v-model="formData" :groups="groups" />
 ```
