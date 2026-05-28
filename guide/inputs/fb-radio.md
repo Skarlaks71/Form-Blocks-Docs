@@ -11,7 +11,7 @@ O `<fb-radio>` gerencia a renderização de grupos de seleção exclusiva (tipo 
 - **Estados de Validação:** Repassa classes de validação e desabilita opções individualmente através do array de configurações.
 
 ## Como usar
-1. **Uso Tradicional (Lista Vertical)**
+### 1. Uso Tradicional (Lista Vertical)
    
 Ideal para questionários estruturados comuns.
 
@@ -34,7 +34,7 @@ const listaGeneros = [
 </template>
 ```
 
-2. **Disposição Horizontal (inline)**
+### 2. Disposição Horizontal (inline)
    
 Ideal para perguntas curtas de Sim ou Não que economizam espaço vertical na tela.
 
@@ -50,7 +50,7 @@ Ideal para perguntas curtas de Sim ou Não que economizam espaço vertical na te
 />
 ```
 
-3. **Variante Segmentada por Botões (button)**
+### 3. Variante Segmentada por Botões (button)
    
 Uma alternativa moderna a caixas de seleção tradicionais, muito usada para escolhas rápidas de planos ou tamanhos:
 
