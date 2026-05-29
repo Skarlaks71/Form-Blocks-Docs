@@ -51,7 +51,7 @@ Com isso temos o nosso componente criado e pronto:
 ## Sistema de Slots (Customização Extrema)
 O coração da flexibilidade do Form Blocks reside no seu sistema de slots dinâmicos. Você pode interceptar a renderização em três níveis: **Grupo**, **Input** e **Repetidor**.
 
-1. **Slot de Grupo: group(key)**
+### 1. Slot de Grupo: group(key)
 Permite substituir a renderização de um bloco inteiro de campos.
 
 ```vue
@@ -66,7 +66,7 @@ Permite substituir a renderização de um bloco inteiro de campos.
 </form-blocks>
 ```
 
-2. **Slot de Input: input(key)**
+### 2. Slot de Input: input(key)
 Permite substituir um campo específico preservando o restante do formulário. Muito útil para campos complexos como upload de arquivos ou editores de texto.
 
 ```vue
@@ -78,7 +78,7 @@ Permite substituir um campo específico preservando o restante do formulário. M
 </form-blocks>
 ```
 
-3. **Slot de Repetidor: form-repeater**
+### 3. Slot de Repetidor: form-repeater
 Se você quiser mudar completamente como a interface de "Adicionar/Remover" itens funciona.
 
 ```vue
@@ -220,3 +220,35 @@ Sempre defina suas `backVars e groupBase` fora do ciclo de renderização ou uti
 | v-model (FormData) | Object | Sim | O objeto de estado do formulário (ex: formData). |
 | groups | Array | Sim | O array de grupos processado pelo makeGroups. |
 | errors | Object | Não | Objeto contendo mensagens de erro mapeadas pelas chaves do model. |
+
+### Props (Groups)
+
+| Prop | Tipo | Padrão | Descrição |
+|------|:----:|-------------|-----------|
+| title | String | '' | Titulo do grupo do formulário |
+| noTitle | Boolean | false | Retira o titulo daquele grupo |
+| dependent | Boolean | undefined | Usada para controlar a visibilidade ou ausência de um grupo |
+| isRepeater | Boolean | false | Usada para transformar um grupo em um repeater |
+| repeaterProps | Object | {} | São as propriedades do **FormBlocksRepeater** |
+| forms | Array | [] | Os formulários do grupo |
+| groupModel | String | undefined | Nome do model usado para armazenar o grupo quando o grupo for um repeater. **É obrigatório** sempre que `isRepeater: true` |
+| groupFormData | Object | undefined | Objeto usado para armazenar os valores default do repeater. **É obrigatório** sempre que `isRepeater: true` |
+| groupFormData | Object | undefined | Objeto usado para armazenar os valores default do repeater. **É obrigatório** sempre que `isRepeater: true` |
+| key | String\|Number | undefined | Chave de referência do grupo, usada para customização de slots de grupo. |
+
+### Props (Groups.forms)
+
+| Prop | Tipo | Padrão | Descrição |
+|------|:----:|-------------|-----------|
+| formKey | String\|Number | undefined | Chave de referência do form, usada para customização de slots do form (_**label + input**_) no grupo. |
+| label | String | '' | Label do form |
+| dependent | Boolean | undefined | Usada para controlar a visibilidade ou ausência de um form |
+| form | Object | {} | Um unico bloco de form (_**label + input**_) do grupo |
+| component | String | 'input' | Nome de registro do componente de input a ser renderizado. Deve ser um componente nativo do FormBlocks ou um registrado através da função `registerComponent` |
+| colProps | Object | {} | São as propriedades do **FbCol** |
+| iProps | Object | {} | São as propriedades e atributos do input que será redirizado via _`component`_ |
+| inputBlockProps | Object | {} | São as propriedades do **FbInputBlock** |
+|labelFor|Boolean\|String|false|Atributo `for` do `<label>` do form. Se false, o componente renderiza um `<span>` em vez de um `<label>` para evitar quebra de foco semântico em múltiplos seletores.|
+| model | String | undefined (auto) | String criada **automaticamente** a partir da backVar correspondente ao form, via `parseLimitProps` na criação do grupo. Essa string representa o nome do `v-model` desse form, que será atribuido ao `formData` |
+| back | String | undefined (auto) | String criada **automaticamente** a partir da backVar correspondente ao form, via `parseLimitProps` na criação do grupo. Essa string tem exatamente o mesmo nome da backVar, que será atribuido ao objeto `errors`|
+| events | Object | {} | São os eventos do input que será redirizado via _`component`_ |
