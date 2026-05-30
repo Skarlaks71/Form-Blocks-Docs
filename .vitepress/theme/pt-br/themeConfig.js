@@ -54,6 +54,75 @@ export const themeConfig = {
           ]
         },
       ]
+    },
+    {
+      text: 'Composables',
+      collapsed: true,
+      items: [
+        {
+          text: 'useCore',
+          collapsed: true,
+          items: [
+            {
+              text: 'createInternalProps',
+              link: '/guide/composables/useCore/createInternalProps.md',
+            }
+          ]
+        },
+        {
+          text: 'useFormHandle',
+          collapsed: true,
+          items: [
+            {
+              text: 'makeGroups',
+              link: '/guide/composables/useFormHandle/makeGroups.md',
+            }
+          ]
+        },
+        // {
+        //   text: 'useCloneDeep',
+        //   collapsed: true,
+        //   items: [
+        //     {
+        //       text: 'cloneDeep',
+        //     }
+        //   ]
+        // },
+        // {
+        //   text: 'useMaska',
+        //   collapsed: true,
+        //   items: [
+        //     { text: 'configMoney' },
+        //     { text: 'docMask' },
+        //     { text: 'dateMask' },
+        //     { text: 'docCNPJ' },
+        //     { text: 'docCPF' },
+        //     { text: 'dateMonthMask' },
+        //     { text: 'cepMask' },
+        //   ]
+        // },
+        // {
+        //   text: 'useParse',
+        //   collapsed: true,
+        //   items: [
+        //     { text: 'parseToEditData' },
+        //     { text: 'parseToDatabase' },
+        //     { text: 'parseToModel' },
+        //     { text: 'parseLimitProps' },
+        //     { text: 'parseToDatabaseWithRepeater' },
+        //     { text: 'parseToDatabaseComplex' },
+        //     { text: 'parseStringShortand' },
+        //     { text: 'castPrimitive' },
+        //   ]
+        // },
+        // {
+        //   text: 'useSearch',
+        //   collapsed: true,
+        //   items: [
+        //     { text: 'isValidInputType' }
+        //   ]
+        // },
+      ]
     }
   ]
 }
