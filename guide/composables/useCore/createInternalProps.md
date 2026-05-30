@@ -62,7 +62,17 @@ const groups = makeGroups(groupBase, backVars, [3, [3, 7]])
 #### Explicação da sintax limitOrRange: [3, [3, 7]]
 O groupProps olha para o primeiro elemento do Array e verifica se ele é um número ou array, se ele for só um número então significa que ele é um **limit**, ou seja devem ser selecionados todos os itens até aquela posição, logo para aquela backVars serão os itens: `'full_name', 'email' e 'password'`, que são os 3 primeiros itens. 
 
-Em seguida a groupProps passa para o próximo elemento que é um Array, então nesse caso é um **Range** de `[start, end(exclusivo)]`, como estamos falando de array sabemos que o primeiro **indice é o 0**, então se nossa backVars tem 7 itens e definimos o `start = 3 ([3, 7])`, então nosso **Range** começa no `'zipcode'` e termina no `'complement'`, mas porque no `'complement'` se ele é o sexto indice do array? Porque o **end** do nosso **Range** é **exclusivo**, isso significa que ele só vai até o antecessor (**_end - 1_**), nesse caso o sexto indice já que nosso `end = 7 ([3, 7])`
+Em seguida a groupProps passa para o próximo elemento que é um Array, então nesse caso é um **Range** de `[start, end(exclusivo)]`, como estamos falando de array sabemos que o primeiro **indice é o 0**, então se nossa backVars tem 7 itens e definimos o `start = 3 ([3, 7])`, então nosso **Range** começa no `'zipcode'` e termina no `'complement'`, mas porque no `'complement'` se ele é o sexto indice do array? 
+
+Porque o **end** do nosso **Range** é **exclusivo**, isso significa que ele só vai até o antecessor (**_end - 1_**)
+```js
+0   1   2   3   4   5   6   7
+|   |   |   |   |   |   |   |
+A   B   C   D   E   F   G
+            ^           ^
+         início        fim
+```
+nesse caso o sexto indice já que nosso `end = 7 ([3, 7])`
 
 ### parseFunction
 Função parse que substitui o parse usado na função parseLimitProps na conversão das strings backVars de **_snake_case_** para **_camelCase_**
