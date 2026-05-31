@@ -79,15 +79,16 @@ export const themeConfig = {
             }
           ]
         },
-        // {
-        //   text: 'useCloneDeep',
-        //   collapsed: true,
-        //   items: [
-        //     {
-        //       text: 'cloneDeep',
-        //     }
-        //   ]
-        // },
+        {
+          text: 'useCloneDeep',
+          collapsed: true,
+          items: [
+            {
+              text: 'cloneDeep',
+              link: '/guide/composables/useCloneDeep/cloneDeep.md',
+            }
+          ]
+        },
         // {
         //   text: 'useMaska',
         //   collapsed: true,
