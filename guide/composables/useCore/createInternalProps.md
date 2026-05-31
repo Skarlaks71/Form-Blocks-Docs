@@ -74,5 +74,5 @@ A   B   C   D   E   F   G
 ```
 nesse caso o sexto indice já que nosso `end = 7 ([3, 7])`
 
-### parseFunction
+### parseFunction (Opicional)
 Função parse que substitui o parse usado na função parseLimitProps na conversão das strings backVars de **_snake_case_** para **_camelCase_**

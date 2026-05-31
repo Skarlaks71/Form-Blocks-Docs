@@ -102,20 +102,20 @@ export const themeConfig = {
         //     { text: 'cepMask' },
         //   ]
         // },
-        // {
-        //   text: 'useParse',
-        //   collapsed: true,
-        //   items: [
-        //     { text: 'parseToEditData' },
-        //     { text: 'parseToDatabase' },
-        //     { text: 'parseToModel' },
-        //     { text: 'parseLimitProps' },
-        //     { text: 'parseToDatabaseWithRepeater' },
-        //     { text: 'parseToDatabaseComplex' },
-        //     { text: 'parseStringShortand' },
-        //     { text: 'castPrimitive' },
-        //   ]
-        // },
+        {
+          text: 'useParse',
+          collapsed: true,
+          items: [
+            // { text: 'parseToEditData' },
+            // { text: 'parseToDatabase' },
+            // { text: 'parseToModel' },
+            { text: 'parseLimitProps', link: '/guide/composables/useParse/parseLimitProps.md' },
+            // { text: 'parseToDatabaseWithRepeater' },
+            // { text: 'parseToDatabaseComplex' },
+            { text: 'parseStringShorthand', link: '/guide/composables/useParse/parseStringShorthand.md' },
+            // { text: 'castPrimitive' },
+          ]
+        },
         // {
         //   text: 'useSearch',
         //   collapsed: true,
