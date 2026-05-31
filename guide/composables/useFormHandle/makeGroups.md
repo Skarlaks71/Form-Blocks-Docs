@@ -82,7 +82,7 @@ O groupProps olha para o primeiro elemento do Array e verifica se ele é um núm
 
 Em seguida a groupProps passa para o próximo elemento que é um Array, então nesse caso é um **Range** de `[start, end(exclusivo)]`, como estamos falando de array sabemos que o primeiro **indice é o 0**, então se nossa backVars tem 7 itens e definimos o `start = 3 ([3, 7])`, então nosso **Range** começa no `'zipcode'` e termina no `'complement'`, mas porque no `'complement'` se ele é o sexto indice do array? Porque o **end** do nosso **Range** é **exclusivo**, isso significa que ele só vai até o antecessor (**_end - 1_**), nesse caso o sexto indice já que nosso `end = 7 ([3, 7])`
 
-### options (Opcional)
+### options (Opicional)
 É um objeto de definição usado exclusivamente para passar a função parse de sua preferência para a função `createInternalProps`
 
 Função parse que substitui o parse usado na função parseLimitProps na conversão das strings backVars de **_snake_case_** para **_camelCase_**
