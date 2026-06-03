@@ -55,5 +55,49 @@ export const englishThemeConfig = {
         },
       ],
     },
+    {
+      text: 'Composables',
+      collapsed: true,
+      items: [
+        {
+          text: 'useCore',
+          collapsed: true,
+          items: [
+            {
+              text: 'createInternalProps',
+              link: '/en/guide/composables/useCore/createInternalProps.md',
+            }
+          ]
+        },
+        {
+          text: 'useFormHandle',
+          collapsed: true,
+          items: [
+            {
+              text: 'makeGroups',
+              link: '/en/guide/composables/useFormHandle/makeGroups.md',
+            }
+          ]
+        },
+        {
+          text: 'useCloneDeep',
+          collapsed: true,
+          items: [
+            {
+              text: 'cloneDeep',
+              link: '/en/guide/composables/useCloneDeep/cloneDeep.md',
+            }
+          ]
+        },
+        {
+          text: 'useParse',
+          collapsed: true,
+          items: [
+            { text: 'parseLimitProps', link: '/en/guide/composables/useParse/parseLimitProps.md' },
+            { text: 'paseStringShorthand', link: '/en/guide/composables/useParse/parseStringShorthand.md' }
+          ]
+        }
+      ]
+    }
   ],
 }
