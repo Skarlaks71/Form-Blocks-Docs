@@ -1,7 +1,7 @@
 export const englishThemeConfig = {
   nav: [
     { text: 'Home', link: '/' },
-    { text: 'Buy me a Monster', link: '/markdown-examples' }
+    { text: 'Buy me a Monster', link: 'https://apoia.se/formblocks' }
   ],
   sidebar: [
     {
