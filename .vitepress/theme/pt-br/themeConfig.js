@@ -1,7 +1,7 @@
 export const themeConfig = {
   nav: [
     { text: 'Home', link: '/' },
-    { text: 'Doe um Monster', link: '/markdown-examples' }
+    { text: 'Doe um Monster', link: 'https://apoia.se/formblocks' }
   ],
   sidebar: [
     {
