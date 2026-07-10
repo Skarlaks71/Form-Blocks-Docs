@@ -24,7 +24,7 @@ const quickStartLink = computed(() => {
 <template>
   <div class="custom-actions">
     <fb-row class="custom-actions__row">
-      <fb-col cols="2">
+      <fb-col cols="6" md="2">
         <VPLink :href="quickStartLink">
           <fb-button
             texture="grid"
@@ -33,7 +33,7 @@ const quickStartLink = computed(() => {
           />
         </VPLink>
       </fb-col>
-      <fb-col cols="2">
+      <fb-col cols="6" md="2">
         <VPLink href="https://github.com/Skarlaks71/form-blocks" target="_blank" rel="noopener">
           <fb-button
             variant="complementary"

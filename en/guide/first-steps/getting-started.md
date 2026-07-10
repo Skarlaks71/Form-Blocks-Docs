@@ -60,8 +60,10 @@ Let's create a simple login form.
 We recommend separating the form definition into a composable to keep your component clean.
 
 ```javascript
+import { defineGroupBase } from "@form-blocks/core"
+
 export default () => {
-  const groupBase = [
+  const groupBase = defineGroupBase([
     {
       title: 'System Access',
       forms: [
@@ -69,7 +71,7 @@ export default () => {
         'Password::password'
       ]
     }
-  ]
+  ])
 
   return { groupBase }
 }
